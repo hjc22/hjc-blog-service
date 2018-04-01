@@ -1,6 +1,6 @@
 const {resolve, reject, errorOut, createErr} = require('../utils'), {getCollection} = require('../dbs'),
   idName = 'commentId'
-const getMeesage = async (ctx) => {
+const delMessage = async (ctx) => {
 
   try {
     const {messageId} = ctx.request.body
@@ -23,6 +23,6 @@ const getMeesage = async (ctx) => {
 
 module.exports = {
   method:'post',
-  name:'getMeesage',
-  fn:getMeesage
+  name:'delMessage',
+  fn:delMessage
 }

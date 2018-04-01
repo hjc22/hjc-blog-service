@@ -19,24 +19,6 @@ app.keys = ['im a newer secret', 'i like turtle'];
 // error handler
 onerror(app)
 
-// let init = async () => {
-//
-//   try {
-//     let pwd = createSha256('hjc151786')
-//     let {result} = await insertData('users',{userName:'admin',email:'549008556@qq.com',password:pwd,userImg:''},'userId')
-//
-//     console.log(result)
-//   }
-//   catch(e){
-//     console.log(222,e)
-//
-//   }
-//
-// }
-//
-// init()
-
-// middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
@@ -50,7 +32,7 @@ app.use(views(__dirname + '/views', {
 
 // logger
 app.use(async (ctx, next) => {
-  
+
   const start = new Date()
   await next()
   const ms = new Date() - start
