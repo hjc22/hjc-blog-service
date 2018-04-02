@@ -45,7 +45,7 @@ const router = require('koa-router')()
                 formidable: {
                   uploadDir: path.resolve(__dirname, '../uploads'),
                   keepExtensions: true,
-                  maxFieldsSize: 1 * 1024 * 1024
+                  maxFieldsSize: 1024 * 1024
                 }
               }), async (ctx, next) => {
 
