@@ -13,7 +13,7 @@ const tags = [
 let editArticle = async (ctx) => {
 
   try {
-      const { articleTitle,titleImg = '',tagId,articleText } = ctx.request.body,userInfo = ctx.user
+      const { articleTitle,titleImg = '',tagId,articleText,simpleText } = ctx.request.body,userInfo = ctx.user
 
 
       if(!articleTitle) throw new Error('没有文章标题(๑´ڡ`๑)')
@@ -24,6 +24,7 @@ let editArticle = async (ctx) => {
         titleImg,
         tagId,
         articleText,
+        simpleText,
         autor:userInfo.userName,
         autorId:userInfo.userId,
         likeNum:0,
