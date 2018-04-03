@@ -24,5 +24,6 @@ const delMessage = async (ctx) => {
 module.exports = {
   method:'post',
   name:'delMessage',
-  fn:delMessage
+  fn:delMessage,
+  auth:true
 }

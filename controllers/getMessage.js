@@ -30,5 +30,6 @@ const getMessage = async (ctx) => {
 module.exports = {
   method:'get',
   name:'getMessage',
-  fn:getMessage
+  fn:getMessage,
+  auth:true
 }

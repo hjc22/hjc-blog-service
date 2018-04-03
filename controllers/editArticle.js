@@ -64,5 +64,6 @@ let editArticle = async (ctx) => {
 module.exports = {
   method:'post',
   name:'editArticle',
-  fn:editArticle
+  fn:editArticle,
+  auth:true
 }

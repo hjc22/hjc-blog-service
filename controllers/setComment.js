@@ -82,5 +82,6 @@ let setComment = async (ctx) => {
 module.exports = {
   method:'post',
   name:'setComment',
-  fn:setComment
+  fn:setComment,
+  auth:true
 }

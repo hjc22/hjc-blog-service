@@ -9,6 +9,7 @@ let queryArticle = async (ctx) => {
 
      articleId = parseInt(articleId)
 
+
      if(!articleId) throw new Error('文章ID错误哦')
 
      const [db,articles] = await getCollection('articles'),[,comments] = await getCollection('comments',db)
@@ -27,7 +28,13 @@ let queryArticle = async (ctx) => {
 
      now.commentsList = commentsAllList
 
+     let [,likes] = await getCollection('likes',db),artLike = await likes.findOne({articleId})
 
+
+
+     now.likeNum = artLike?artLike.likeNum:0
+
+     if(ctx.user) now.isLike = artLike?artLike.userIds.indexOf(ctx.user.userId) !== -1?1:0:0
 
      prev = prev[0]
 

@@ -32,5 +32,6 @@ let logout = async (ctx) => {
 module.exports = {
   method:'post',
   name:'logout',
-  fn:logout
+  fn:logout,
+  auth:true
 }

@@ -4,7 +4,7 @@ const router = require('koa-router')()
     path = require('path')
 
   const userAuth = async (ctx, next) => {
-
+    console.log(ctx)
     try {
       const isLogin = await checkLogin(ctx)
 
@@ -23,14 +23,22 @@ const router = require('koa-router')()
 
   router.prefix('/api')
 
+  let authRoutes = []
 
   async function setRouter(){
 
     try{
       const controllers = await getControllers()
 
+          controllers.forEach( v => {
+            if(v.auth) authRoutes.push('/'+v.name)
+
+          })
+
+          router.use(authRoutes, userAuth)
 
           controllers.forEach( v => {
+
 
             if(v.name !== 'uploadPhoto'){
 
@@ -55,6 +63,10 @@ const router = require('koa-router')()
             }
 
           })
+
+          // console.log(authRoutes)
+
+
     }
     catch(e){
        console.log(e)
@@ -62,13 +74,26 @@ const router = require('koa-router')()
 
 
   }
-
   setRouter()
 
 
-  router.use([
-    '/setComment', '/editArticle','/logout','/getMessage','/delMessage','/setMessageBoard'
-  ], userAuth)
+
+  router.use(async (ctx,next) => {
+    try {
+       const isLogin = await checkLogin(ctx)
+        ctx.user = isLogin?isLogin:null
+
+        await next()
+
+    } catch (e) {
+      errorOut(ctx, e, 1000)
+    }
+  })
+
+
+
+
+
   //
   // router.get('/', async (ctx, next) => {
   //

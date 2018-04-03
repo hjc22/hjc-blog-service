@@ -80,5 +80,6 @@ let setMessageBoard = async (ctx) => {
 module.exports = {
   method:'post',
   name:'setMessageBoard',
-  fn:setMessageBoard
+  fn:setMessageBoard,
+  auth:true
 }
