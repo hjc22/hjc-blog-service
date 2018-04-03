@@ -1,11 +1,11 @@
 const { resolve,reject,errorOut,getClientIp } = require('../utils'),
-      { getCollection } = require('../dbs')
+      { getCollection } = require('../dbs'),pageCount = 10
 
 
 let getComment = async (ctx) => {
 
   try {
-     let { articleId } = ctx.request.query
+     let { articleId,page = 1 } = ctx.request.query,skip = (page - 1) * pageCount
 
      articleId = parseInt(articleId)
 
@@ -13,12 +13,21 @@ let getComment = async (ctx) => {
 
      const [,comments] = await getCollection('comments')
 
+     let data = {onePageCount:pageCount,page}
 
-     const commentsAllList = await comments.find({articleId},{projection:{_id:0}}).toArray()
+     const count = await comments.find({articleId}).count()
+
+     let list = []
+     if(count){
+       list = await comments.find({articleId},{projection:{_id:0}}).skip(skip).limit(pageCount).toArray()
+       data.allCount = count
+     }
+     else data.allCount = 0
+
+     data.list = list
 
 
-
-     ctx.body = resolve(commentsAllList)
+     ctx.body = resolve(data)
 
   }
   catch(e){
