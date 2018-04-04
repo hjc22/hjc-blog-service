@@ -22,6 +22,8 @@ let setComment = async (ctx) => {
 
     const [db, comments] = await getCollection('comments'),{userId,userName,userImg,grade} = userInfo,commentUser = {userId,userName,userImg,grade}
 
+    console.log(commentUser)
+
     let data = !commentId
       ? {
         commentText,

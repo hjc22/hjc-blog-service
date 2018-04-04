@@ -14,16 +14,15 @@ let setMessageBoard = async (ctx) => {
 
     if (!commentText)
       throw createErr('参数错误[commentText]')
-    if (!userInfo)
-      throw createErr('尚未登录', 9999)
 
-    const [db, messageBoard] = await getCollection('messageBoard')
+    const [db, messageBoard] = await getCollection('messageBoard'),{userId,userName,userImg,grade} = userInfo,commentUser = {userId,userName,userImg,grade}
+
 
     let data = !boardId
       ? {
         commentText,
         // articleId,
-        userInfo,
+        userInfo:commentUser,
         replyList: [],
         date: getNowDate(),
         dateTime: + new Date(),
@@ -35,7 +34,7 @@ let setMessageBoard = async (ctx) => {
         senderName,
         // articleId
         commentText,
-        userInfo,
+        userInfo:commentUser,
         date: getNowDate(),
         dateTime: + new Date(),
         likeNum: 0,

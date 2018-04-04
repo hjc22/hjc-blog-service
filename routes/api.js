@@ -4,7 +4,7 @@ const router = require('koa-router')()
     path = require('path')
 
   const userAuth = async (ctx, next) => {
-    console.log(ctx)
+
     try {
       const isLogin = await checkLogin(ctx)
 
