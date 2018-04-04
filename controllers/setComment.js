@@ -20,13 +20,13 @@ let setComment = async (ctx) => {
     if (!userInfo)
       throw createErr('尚未登录', 9999)
 
-    const [db, comments] = await getCollection('comments')
+    const [db, comments] = await getCollection('comments'),{userId,userName,userImg,grade} = userInfo,commentUser = {userId,userName,userImg,grade}
 
     let data = !commentId
       ? {
         commentText,
         articleId,
-        userInfo,
+        userInfo:commentUser,
         replyList: [],
         date: getNowDate(),
         dateTime: + new Date(),
@@ -38,7 +38,7 @@ let setComment = async (ctx) => {
         senderName,
         articleId,
         commentText,
-        userInfo,
+        userInfo:commentUser,
         date: getNowDate(),
         dateTime: + new Date(),
         likeNum: 0,
