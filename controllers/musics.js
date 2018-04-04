@@ -9,6 +9,7 @@ let musics = async (ctx) => {
   try{
 
     let { result } = await getRedis(music_redis)
+
     if(!result){
       const html = await axios.get('http://music.163.com/discover/toplist?id=3778678')
 
@@ -20,8 +21,12 @@ let musics = async (ctx) => {
 
       await setRedis(music_redis,JSON.stringify(result),259200,1)
     }
+    else {
+      result = JSON.parse(result)
+    }
 
-    ctx.body = resolve(JSON.parse(result))
+
+    ctx.body = resolve(result)
   }
   catch(e){
     errorOut(ctx,e)
