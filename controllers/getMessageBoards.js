@@ -18,7 +18,7 @@ let getMessageBoard = async (ctx) => {
 
       let list = []
       if(count){
-        list = await messageBoard.find({},{projection:{_id:0}}).skip(skip).limit(pageCount).toArray()
+        list = await messageBoard.find({},{projection:{_id:0}}).sort({boardId:-1}).skip(skip).limit(pageCount).toArray()
 
         data.allCount = count
 
