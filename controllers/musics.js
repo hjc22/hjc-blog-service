@@ -17,7 +17,7 @@ let musics = async (ctx) => {
 
       let url = $('#song-list-pre-cache textarea').html()
 
-      result = JSON.parse(url).slice(0,10)
+      result = JSON.parse(url)
 
       await setRedis(music_redis,JSON.stringify(result),259200,1)
     }
