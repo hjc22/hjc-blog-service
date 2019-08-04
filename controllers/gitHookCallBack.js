@@ -15,7 +15,7 @@ const gitHookCallBack = async (ctx) => {
 
     }
     catch (e) {
-        errorOut(ctx, e)
+        errorOut(ctx, e);
     }
 
 }
