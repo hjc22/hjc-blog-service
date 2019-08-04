@@ -1,5 +1,5 @@
 const { resolve, reject, errorOut, getClientIp } = require('../utils')
-
+const child_process = require('child_process')
 
 const gitHookCallBack = async (ctx) => {
 
@@ -7,12 +7,22 @@ const gitHookCallBack = async (ctx) => {
         let { action } = ctx.request.body
 
         console.log('gitHookCallBack log----->', ctx.request.body)
-        console.log('gitHookCallBack-action log----->', ctx.request.body.action)
+
+        child_process.exec(`. ../bin/update.sh`, {
+            cwd: __dirname
+        }, (err, stdout) => {
+            if (err) {
+                console.log('push err:', err)
+            }
+            else {
+                console.log('push err:', stdout)
+            }
+        })
 
 
-        if (action === 'push') {
+        // if (action === 'push') {
 
-        }
+        // }
         ctx.body = resolve('ok23')
 
     }
