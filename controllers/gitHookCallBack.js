@@ -1,10 +1,19 @@
 const { resolve, reject, errorOut, getClientIp } = require('../utils')
+
+const fs = require('fs')
+
 const child_process = require('child_process')
 
 const gitHookCallBack = async (ctx) => {
 
     try {
         let { action } = ctx.request.body
+
+        fs.writeFile('./hook.json', JSON.stringify(ctx.request.body), () => {
+
+        })
+
+
 
         console.log('gitHookCallBack log----->', ctx.request.body)
 
