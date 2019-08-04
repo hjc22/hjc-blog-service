@@ -9,9 +9,9 @@ const gitHookCallBack = async (ctx) => {
     try {
         let { action } = ctx.request.body
 
-        fs.writeFile('./hook.json', JSON.stringify(ctx.request.body), () => {
+        // fs.writeFile('./hook.json', JSON.stringify(ctx.request.body), () => {
 
-        })
+        // })
 
 
 
