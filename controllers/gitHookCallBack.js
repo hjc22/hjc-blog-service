@@ -7,6 +7,8 @@ const gitHookCallBack = async (ctx) => {
         let { action } = ctx.request.body
 
         console.log('gitHookCallBack log----->', ctx.request.body)
+        console.log('gitHookCallBack-action log----->', ctx.request.body.action)
+
 
         if (action === 'push') {
 
