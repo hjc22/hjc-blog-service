@@ -32,7 +32,7 @@ const gitHookCallBack = async (ctx) => {
         // if (action === 'push') {
 
         // }
-        ctx.body = resolve('ok24')
+        ctx.body = resolve('ok25')
 
     }
     catch (e) {
