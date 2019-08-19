@@ -16,7 +16,7 @@ const getVideoList = async (ctx) => {
             '美食', '购物',
             '美食', '购物',
             '美食', '购物',
-        ]
+        ];
 
         ctx.body = resolve(data)
 
