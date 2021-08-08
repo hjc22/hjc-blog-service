@@ -30,6 +30,7 @@ let musics = async (ctx) => {
            artists: v.artists
          }
       })
+      console.log(result);
       await setRedis(music_redis,JSON.stringify(result),259200,1)
     }
     else {
