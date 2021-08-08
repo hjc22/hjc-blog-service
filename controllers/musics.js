@@ -19,6 +19,17 @@ let musics = async (ctx) => {
 
       result = JSON.parse(url)
 
+      result = result.map(v => {
+         const { id, name, picUrl } = v.album;
+         return {
+           id,
+           name,
+           album: {
+            picUrl
+           },
+           artists: v.artists
+         }
+      })
       await setRedis(music_redis,JSON.stringify(result),259200,1)
     }
     else {
