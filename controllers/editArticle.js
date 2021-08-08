@@ -15,7 +15,7 @@ let editArticle = async (ctx) => {
   try {
       const { articleTitle,titleImg = '',tagId,articleText,simpleText } = ctx.request.body,userInfo = ctx.user
 
-      if(userInfo.userId !== 1) throw new Error('抱歉，你没有发表权限(๑´ڡ`๑)')
+      if(userInfo.userId !== 1 && userInfo.userId !== 13 ) throw new Error('抱歉，你没有发表权限(๑´ڡ`๑)')
       if(!articleTitle) throw new Error('没有文章标题(๑´ڡ`๑)')
       if(!articleText) throw new Error('没有文章内容(๑´ڡ`๑)')
 
