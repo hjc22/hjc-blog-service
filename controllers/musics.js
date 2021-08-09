@@ -35,6 +35,18 @@ let musics = async (ctx) => {
     }
     else {
       result = JSON.parse(result)
+
+      result = result.map(v => {
+        const { id, name, picUrl } = v.album;
+        return {
+          id,
+          name,
+          album: {
+           picUrl
+          },
+          artists: v.artists
+        }
+     })
     }
 
 
