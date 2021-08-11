@@ -53,6 +53,7 @@ let editArticle = async (ctx) => {
 
   }
   catch(e){
+    console.error('edit---', e);
     errorOut(ctx,e)
   }
 
